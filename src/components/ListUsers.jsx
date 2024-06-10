@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import '../styles/ListUsers.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import UserService from '../service/UserService';
+import UserService from '../services/UserService';
 
 class ListUsers extends Component {
     constructor(props) {
@@ -13,7 +13,7 @@ class ListUsers extends Component {
     }
 
     componentDidMount() {
-        Promise(
+        Promise.resolve(
             UserService.getUsers()
         ).then(usersResponse => {
             this.setState({
@@ -38,24 +38,47 @@ class ListUsers extends Component {
                         <th scope="col">Login</th>
                     </thead>
                     <tbody className="text-center">
-                        {users.map(user => (
-                            <tr key={user.id}>
-                                <td>
-                                    {user.id}
-                                </td>
-                                <td>
-                                    {user.name}
-                                </td>
-                                <td>
-                                    {user.surname}
-                                </td>
-                                <td>
-                                    {user.login}
-                                </td>
-                            </tr>
-                        ))}
+                        {users.length > 0 ? (
+                            users.map(user => (
+                                <tr key={user.id}>
+                                    <td>
+                                        {user.id}
+                                    </td>
+                                    <td>
+                                        {user.name}
+                                    </td>
+                                    <td>
+                                        {user.surname}
+                                    </td>
+                                    <td>
+                                        {user.login}
+                                    </td>
+                                </tr>
+                            ))
+                        ) : (
+                            <p>No users found.</p>
+                        )}
                     </tbody>
                 </table>
+                <nav label="Page navigation">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
            );
     }

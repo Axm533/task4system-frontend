@@ -29,15 +29,15 @@ class MainPage extends Component {
             <div>
                 <h1 className='text-center'> Main page </h1>
 
-                <div class="d-grid gap-2 d-md-block">
+                <div class="d-grid gap-2 d-md-block text-center">
                     <button
-                        class="btn btn-primary"
+                        className="btn btn-primary"
                         type="button"
                         onClick={this.viewUsersList}>
                         Users list
                     </button>
                     <button
-                        class="btn btn-primary"
+                        className="btn btn-primary"
                         type="button"
                         onClick={this.loadFile}>
                         Load file
@@ -45,7 +45,6 @@ class MainPage extends Component {
                 </div>
 
             </div>
-
 
         )
      }
