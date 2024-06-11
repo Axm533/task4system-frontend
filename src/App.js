@@ -12,19 +12,21 @@ import MainPage from './components/MainPage';
 
 class App extends Component {
     render() {
-        return <div>
+        return (
             <Router>
-                <div className='container'>
+                <div id="root">
                     <Header/>
-                        <Switch>
-                            <Route exact path="/" component={MainPage} />
-                            <Route exact path="/userlist" component={ListUsers} />
-                            <Route exact path="/loadfile" component={LoadFile} />
-                        </Switch>
+                        <div className="container">
+                            <Switch>
+                                <Route exact path="/" component={MainPage} />
+                                <Route exact path="/userlist" component={ListUsers} />
+                                <Route exact path="/loadfile" component={LoadFile} />
+                            </Switch>
+                        </div>
                     <Footer/>
                 </div>
             </Router>
-        </div>
+     )
     }
 }
 export default App;

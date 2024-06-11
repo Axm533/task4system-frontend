@@ -7,17 +7,16 @@ class LoadFile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedFile: null
+            selectedFile: null,
+            isLoading: false,
+            uploadSuccess: false,
+            summary: null,
         };
 
-        this.chooseFile = this.chooseFile.bind(this);
         this.onFileChange = this.onFileChange.bind(this);
         this.uploadFile = this.uploadFile.bind(this);
+        this.saveUsers = this.saveUsers.bind(this);
         this.viewUsersList = this.viewUsersList.bind(this);
-    }
-
-    chooseFile() {
-        document.getElementById('fileInput').click();
     }
 
     onFileChange(event) {
@@ -29,18 +28,43 @@ class LoadFile extends Component {
             const reader = new FileReader();
             reader.onload = (event) => {
                 const fileContent = event.target.result;
+                if (!this.isValidJSON(fileContent)) {
+                    alert('Selected file is not in JSON format.');
+                    return;
+                }
+                this.setState({ isLoading: true });
                 const users = JSON.parse(fileContent);
-
-                UserService.uploadUsers(users)
-                    .then(response => {
-                        alert('Users uploaded!');
-                    })
-                    .catch(error => {
-                        alert('Failed to upload: ' + error.message);
-                    });
+                const uploadedUsersCount = users.length;
+                this.saveUsers(users, uploadedUsersCount);
             };
             reader.readAsText(this.state.selectedFile);
         }
+    }
+
+    isValidJSON(fileContent) {
+        try {
+            JSON.parse(fileContent);
+            return true;
+        } catch (error) {
+            return false;
+        }
+    }
+
+    saveUsers(users, uploadedUsersCount) {
+        UserService.deleteUsers()
+            .then(() => {
+                return UserService.uploadUsers(users)
+            }).then(response => {
+                this.setState({
+                    uploadSuccess: true,
+                    summary: `Successfully uploaded ${uploadedUsersCount} users`,
+                    isLoading: false,
+                });
+            })
+            .catch(error => {
+                console.error('Error uploading users:', error);
+                this.setState({ uploadSuccess: false, isLoading: false });
+            });
     }
 
     viewUsersList() {
@@ -49,33 +73,41 @@ class LoadFile extends Component {
 
     render() {
 
-        return (
-            <div>
-                <h1 className='text-center'>Upload file</h1>
+        const { isLoading, uploadSuccess, summary } = this.state;
 
-                <div className="d-grid gap-2 d-md-block text-center">
+        return (
+            <div className="container">
+                <h2>Upload JSON File</h2>
+                <div>
+                    <label
+                        htmlFor="formFileLg"
+                        className="form-label"/>
                     <input
-                        id="fileInput"
+                        className="form-control form-control-lg"
+                        id="formFileLg"
                         type="file"
-                        style={{ display: 'none' }}
-                        onChange={this.onFileChange}
-                    />
-                    <button
-                        className="btn btn-primary"
-                        type="button"
-                        onClick={this.chooseFile}>
-                        Choose a file
-                    </button>
-                    <button
-                        className="btn btn-primary"
-                        type="button"
-                        onClick={this.uploadFile}>
-                        Upload file
-                    </button>
-                   
+                        onChange={this.onFileChange} />
                 </div>
+                <div className="text-center">
+                <button
+                    className="btn btn-primary mt-3 btn-lg"
+                    onClick={this.uploadFile}
+                    disabled={isLoading}>
+                    {isLoading ? 'Uploading...' : 'Upload'}
+                </button>
+                </div>
+                {uploadSuccess && (
+                    <div className="alert alert-success mt-3">
+                        {summary}
+                        <button
+                            className="btn btn-link"
+                            onClick={this.viewUsersList}>
+                            Go to User List
+                        </button>
+                    </div>
+                )}
             </div>
-        )
+        );
     }
 
 }
