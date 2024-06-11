@@ -33,8 +33,10 @@ class ListUsers extends Component {
             .then(response => {
                 this.setState({
                     users: response.data.content,
-                    totalPages: response.data.totalPages
+                    totalPages: response.headers['x-total-pages']
                 });
+                console.log(response.headers['x-total-pages']);
+                console.log(response);
             })
             .catch(error => {
                 console.error('Error fetching users:', error);
