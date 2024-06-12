@@ -1,0 +1,28 @@
+:root {
+    --title-color: #76ABAE;
+    --button-bg-color: #76ABAE;
+    --button-bg-color-hover: #0056b3;
+    --button-text-color: #ffffff;
+    --button-padding: 10px 20px;
+}
+
+.custom-button {
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    padding: var(--button-padding);
+    font-size: 1.5rem;
+    width: 200px;
+    margin-top: 25px;
+}
+
+    .custom-button:hover {
+        background-color: var(--button-bg-color-hover);
+        color: var(--button-text-color);
+    }
+
+.upload-file-title {
+    color: var(--title-color);
+    font-size: 72px;
+    margin-bottom: 25px;
+    text-align: center;
+}

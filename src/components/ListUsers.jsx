@@ -35,8 +35,6 @@ class ListUsers extends Component {
                     users: response.data.content,
                     totalPages: response.headers['x-total-pages']
                 });
-                console.log(response.headers['x-total-pages']);
-                console.log(response);
             })
             .catch(error => {
                 console.error('Error fetching users:', error);
@@ -90,11 +88,11 @@ class ListUsers extends Component {
             <nav aria-label="Page navigation">
                 <ul className="pagination justify-content-center">
                     <li className={`page-item ${page === 0 ? 'disabled' : ''}`}>
-                        <button className="page-link" onClick={() => this.handlePageChange(page - 1)}>Previous</button>
+                        <button className="page-link pagination-button" onClick={() => this.handlePageChange(page - 1)}>Previous</button>
                     </li>
                     {pageButtons}
                     <li className={`page-item ${page === totalPages - 1 ? 'disabled' : ''}`}>
-                        <button className="page-link" onClick={() => this.handlePageChange(page + 1)}>Next</button>
+                        <button className="page-link pagination-button" onClick={() => this.handlePageChange(page + 1)}>Next</button>
                     </li>
                 </ul>
             </nav>
@@ -108,7 +106,7 @@ class ListUsers extends Component {
 
         return (
             <div>
-                <h1 className='text-center'>List of Users</h1>
+                <h1 className='list-users-title'>List of Users</h1>
                 <div className="input-group mb-3">
                     <input
                         type="text"
@@ -118,7 +116,7 @@ class ListUsers extends Component {
                         onChange={this.handleSearchChange}
                     />
                 </div>
-                <table className="table table-bordered">
+                <table className="table table-bordered table-dark">
                     <thead>
                         <tr>
                             <th onClick={() => this.handleSortChange('name')}>

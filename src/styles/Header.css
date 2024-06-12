@@ -1,0 +1,26 @@
+:root {
+    --header-text-color: #76ABAE;
+    --header-font-size: 36px;
+    --header-font-family: 'Arial', sans-serif;
+    --header-bg-color: #222831;
+}
+
+.header {
+  background-color: var(--header-bg-color);
+  width: 100%; 
+  padding: 1rem; 
+}
+
+.header .container {
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+
+.header-title {
+  color: var(--header-text-color);
+  font-size: var(--header-font-size);
+  font-family: var(--header-font-family);
+  display: flex;
+  align-items: center;
+}

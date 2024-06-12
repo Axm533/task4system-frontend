@@ -26,27 +26,27 @@ class MainPage extends Component {
     render() {
 
         return (
-            <div>
-                <h1 className='text-center'> Main page </h1>
+            <div className="main-page-container">
+                <div>
+                    <h1 className='main-page-text'> Main page </h1>
 
-                <div class="d-grid gap-2 d-md-block text-center">
-                    <button
-                        className="btn btn-primary"
-                        type="button"
-                        onClick={this.viewUsersList}>
-                        Users list
-                    </button>
-                    <button
-                        className="btn btn-primary"
-                        type="button"
-                        onClick={this.loadFile}>
-                        Load file
-                    </button>
+                    <div className="d-grid gap-2 d-md-block text-center">
+                        <button
+                            className="btn custom-button"
+                            type="button"
+                            onClick={this.viewUsersList}>
+                            Users list
+                        </button>
+                        <button
+                            className="btn custom-button"
+                            type="button"
+                            onClick={this.loadFile}>
+                            Load file
+                        </button>
+                    </div>
                 </div>
-
             </div>
-
-        )
+        );
      }
 }
 

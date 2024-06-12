@@ -1,7 +1,19 @@
-footer {
-    background-color: #f8f9fa;
-    padding: 1rem 0;
-    text-align: center;
+:root {
+    --footer-text-color: #ffffff;
+    --footer-font-size: 36px;
+    --footer-font-family: 'Arial', sans-serif;
+    --footer-bg-color: #222831;
+}
+
+.footer {
+    background-color: var(--footer-bg-color);
     width: 100%;
     position: relative;
+    bottom: 0;
+}
+
+.footer-title {
+    text-align: center;
+    color: var(--footer-text-color);
+    margin: 0;
 }

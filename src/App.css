@@ -3,27 +3,21 @@ html, body {
     margin: 0;
 }
 
+:root {
+    --black: #222831;
+    --dark-grey: #31363F;
+    --teal: #76ABAE;
+    --white: #EEEEEE;
+}
+
 #root {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-color: var(--dark-grey);
 }
 
 .container {
     flex: 1;
 }
 
-.App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-}
-
-.App-link {
-    color: #61dafb;
-}

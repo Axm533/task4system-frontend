@@ -1,0 +1,27 @@
+:root {
+    --title-color: #76ABAE;
+    --button-bg-color: #76ABAE;
+    --button-bg-color-hover: #0056b3;
+    --button-text-color: #ffffff;
+    --button-border-color: #0056b3;
+}
+
+
+.list-users-title {
+    color: var(--title-color);
+    font-size: 52px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.pagination-button {
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border-color: var(--button-border-color);
+}
+
+    .pagination-button:hover {
+        background-color: var(--button-bg-color-hover);
+        color: var(--button-text-color);
+        border-color: var(--button-border-color);
+    }

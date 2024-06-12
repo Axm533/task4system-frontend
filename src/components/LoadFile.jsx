@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import UserService from '../services/UserService.js';
-import '../styles/ListUsers.css';
+import '../styles/LoadFile.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class LoadFile extends Component {
@@ -77,7 +77,7 @@ class LoadFile extends Component {
 
         return (
             <div className="container">
-                <h2>Upload JSON File</h2>
+                <h2 className="upload-file-title">Upload JSON File</h2>
                 <div>
                     <label
                         htmlFor="formFileLg"
@@ -90,7 +90,7 @@ class LoadFile extends Component {
                 </div>
                 <div className="text-center">
                 <button
-                    className="btn btn-primary mt-3 btn-lg"
+                        className="btn custom-button"
                     onClick={this.uploadFile}
                     disabled={isLoading}>
                     {isLoading ? 'Uploading...' : 'Upload'}

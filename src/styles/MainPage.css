@@ -1,0 +1,35 @@
+:root {
+    --title-text-color: #76ABAE;
+    --button-bg-color: #76ABAE;
+    --button-bg-color-hover: #0056b3;
+    --button-text-color: #ffffff;
+    --button-padding: 10px 20px;
+}
+
+.main-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.custom-button {
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    padding: var(--button-padding);
+    font-size: 1.5rem;
+    width: 200px;
+    margin-inline: 10px;
+}
+
+    .custom-button:hover {
+        background-color: var(--button-bg-color-hover);
+        color: var(--button-text-color);
+    }
+
+.main-page-text {
+    color: var(--title-text-color);
+    font-size: 72px;
+    margin-bottom: 25px;
+    text-align: center;
+}
